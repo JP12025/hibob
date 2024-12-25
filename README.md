@@ -30,9 +30,3 @@ git add hello.py
 git commit -m "My answer"
 git push
 ```
-
-# Walkthrough
-
-Here’s a walkthrough of this problem
-
-Link to video
