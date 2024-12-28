@@ -190,10 +190,13 @@ else
 fi
 
 ## Run test 05
-TEST_NAME="Hi, 42957!"
+RNUM=$RANDOM
+TEST_NAME="Hi, ${RNUM}!"
 TEST_NUM="05"
 TEST_IN=.test/${TEST_NUM}.in
+echo "${RNUM}" > ${TEST_IN}
 TEST_EXP=.test/${TEST_NUM}.exp
+echo "What's your name? Hi, ${RNUM}!" > ${TEST_EXP}
 TEST_OUT=".test/${TEST_NUM}_test.out"
 TEST_DIFF=".test/${TEST_NUM}_test.diff"
 python ${EXP_SCRIPT} < ${TEST_IN}  > ${TEST_OUT}
