@@ -129,6 +129,96 @@ else
     echo ""
 fi
 
+## Run test 03
+TEST_NAME="Hi, !"
+TEST_NUM="03"
+TEST_IN=.test/${TEST_NUM}.in
+TEST_EXP=.test/${TEST_NUM}.exp
+TEST_OUT=".test/${TEST_NUM}_test.out"
+TEST_DIFF=".test/${TEST_NUM}_test.diff"
+python ${EXP_SCRIPT} < ${TEST_IN}  > ${TEST_OUT}
+diff ${TEST_EXP} ${TEST_OUT} > ${TEST_DIFF}
+NB_DIFF=`cat ${TEST_DIFF} | wc -l`
+NB_TEST_TOTAL=$((NB_TEST_TOTAL+1))
+if [ ${NB_DIFF} -eq 0 ]
+then
+    echo "${TEST_NUM} ${Green}\xE2\x9C\x94${Color_Off} ${TEST_NAME}"
+    rm ${TEST_OUT}
+    rm ${TEST_DIFF}
+    NB_TEST_OK=$((NB_TEST_OK+1))
+else
+    echo ""
+    echo "${TEST_NUM} ${Red}\xE2\x9C\x97${Color_Off} ${TEST_NAME}"
+    if [ "${VERBOSE}" = "True" ]
+    then
+        echo "${Green}Expected${Color_Off}"
+        grep "<" ${TEST_DIFF}
+        echo "${Red}Given${Color_Off}"
+        grep ">" ${TEST_DIFF}
+    fi
+    echo ""
+fi
+
+## Run test 04
+TEST_NAME="Hi, c6p0!"
+TEST_NUM="04"
+TEST_IN=.test/${TEST_NUM}.in
+TEST_EXP=.test/${TEST_NUM}.exp
+TEST_OUT=".test/${TEST_NUM}_test.out"
+TEST_DIFF=".test/${TEST_NUM}_test.diff"
+python ${EXP_SCRIPT} < ${TEST_IN}  > ${TEST_OUT}
+diff ${TEST_EXP} ${TEST_OUT} > ${TEST_DIFF}
+NB_DIFF=`cat ${TEST_DIFF} | wc -l`
+NB_TEST_TOTAL=$((NB_TEST_TOTAL+1))
+if [ ${NB_DIFF} -eq 0 ]
+then
+    echo "${TEST_NUM} ${Green}\xE2\x9C\x94${Color_Off} ${TEST_NAME}"
+    rm ${TEST_OUT}
+    rm ${TEST_DIFF}
+    NB_TEST_OK=$((NB_TEST_OK+1))
+else
+    echo ""
+    echo "${TEST_NUM} ${Red}\xE2\x9C\x97${Color_Off} ${TEST_NAME}"
+    if [ "${VERBOSE}" = "True" ]
+    then
+        echo "${Green}Expected${Color_Off}"
+        grep "<" ${TEST_DIFF}
+        echo "${Red}Given${Color_Off}"
+        grep ">" ${TEST_DIFF}
+    fi
+    echo ""
+fi
+
+## Run test 05
+TEST_NAME="Hi, 42957!"
+TEST_NUM="05"
+TEST_IN=.test/${TEST_NUM}.in
+TEST_EXP=.test/${TEST_NUM}.exp
+TEST_OUT=".test/${TEST_NUM}_test.out"
+TEST_DIFF=".test/${TEST_NUM}_test.diff"
+python ${EXP_SCRIPT} < ${TEST_IN}  > ${TEST_OUT}
+diff ${TEST_EXP} ${TEST_OUT} > ${TEST_DIFF}
+NB_DIFF=`cat ${TEST_DIFF} | wc -l`
+NB_TEST_TOTAL=$((NB_TEST_TOTAL+1))
+if [ ${NB_DIFF} -eq 0 ]
+then
+    echo "${TEST_NUM} ${Green}\xE2\x9C\x94${Color_Off} ${TEST_NAME}"
+    rm ${TEST_OUT}
+    rm ${TEST_DIFF}
+    NB_TEST_OK=$((NB_TEST_OK+1))
+else
+    echo ""
+    echo "${TEST_NUM} ${Red}\xE2\x9C\x97${Color_Off} ${TEST_NAME}"
+    if [ "${VERBOSE}" = "True" ]
+    then
+        echo "${Green}Expected${Color_Off}"
+        grep "<" ${TEST_DIFF}
+        echo "${Red}Given${Color_Off}"
+        grep ">" ${TEST_DIFF}
+    fi
+    echo ""
+fi
+
 
 ##################################################
 # Print Summary
