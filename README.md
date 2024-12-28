@@ -28,7 +28,7 @@ During the first session
 
 # How to Test
 
-- Test your script with command `./check [-v] hello.py`
+- Test your script with command `./check hello.py`
 - `-v` option gives the difference between what is expected and what your script prints
 
 # How to Submit
