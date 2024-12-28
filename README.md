@@ -33,4 +33,4 @@ During the first session
 
 # How to submit
 
-Once you're done, submit your file on Moodle
+Once you're done with all tasks, submit your python files on Moodle
