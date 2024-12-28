@@ -1,0 +1,141 @@
+#! /usr/bin/env sh
+
+# File to test
+EXP_SCRIPT="hello.py"
+
+# Text colors
+Red='\033[0;31m'
+Color_Off='\033[0m' 
+Green='\033[0;32m'
+
+##################################################
+# check command line params
+##################################################
+VERBOSE="False"
+GIVEN_SCRIPT=""
+if [ $# -eq 1 ]
+then
+    GIVEN_SCRIPT="${1}"
+fi
+
+if [ $# -eq 2 ]
+then
+    if [ "${1}" = "-v" ]
+    then
+        VERBOSE="True"
+        GIVEN_SCRIPT="${2}"
+    fi
+    if [ "${2}" = "-v" ]
+    then
+        VERBOSE="True"
+        GIVEN_SCRIPT="${1}"
+    fi
+fi
+
+##################################################
+# Check if python is available
+##################################################
+pyapp=`which python`
+if [ "${pyapp:0:1}" == "/" ]
+then
+    python --version
+else
+    echo "Python not found"
+    exit
+fi
+
+##################################################
+# Check if the script has been given
+##################################################
+if [ "${GIVEN_SCRIPT}" != "${EXP_SCRIPT}" ]
+then
+    echo "Script ${EXP_SCRIPT} is not in command line"
+    exit
+fi
+
+##################################################
+# Check if the given script exists
+##################################################
+if [ ! -f "${EXP_SCRIPT}" ]
+then
+    echo "File not found: ${EXP_SCRIPT}"
+    exit
+fi
+
+
+##################################################
+# Run tests
+##################################################
+NB_TEST_OK=0
+NB_TEST_TOTAL=0
+
+## Run test 01
+TEST_NAME="Hi, Bob!"
+TEST_NUM="01"
+TEST_IN=.test/${TEST_NUM}.in
+TEST_EXP=.test/${TEST_NUM}.exp
+TEST_OUT=".test/${TEST_NUM}_test.out"
+TEST_DIFF=".test/${TEST_NUM}_test.diff"
+python ${EXP_SCRIPT} < ${TEST_IN}  > ${TEST_OUT}
+diff ${TEST_EXP} ${TEST_OUT} > ${TEST_DIFF}
+NB_DIFF=`cat ${TEST_DIFF} | wc -l`
+NB_TEST_TOTAL=$((NB_TEST_TOTAL+1))
+if [ ${NB_DIFF} -eq 0 ]
+then
+    echo "${TEST_NUM} ${Green}\xE2\x9C\x94${Color_Off} ${TEST_NAME}"
+    rm ${TEST_OUT}
+    rm ${TEST_DIFF}
+    NB_TEST_OK=$((NB_TEST_OK+1))
+else
+    echo ""
+    echo "${TEST_NUM} ${Red}\xE2\x9C\x97${Color_Off} ${TEST_NAME}"
+    if [ "${VERBOSE}" = "True" ]
+    then
+        echo "${Green}Expected${Color_Off}"
+        grep "<" ${TEST_DIFF}
+        echo "${Red}Given${Color_Off}"
+        grep ">" ${TEST_DIFF}
+    fi
+    echo ""
+fi
+
+## Run test 02
+TEST_NAME="Hi, Barbara!"
+TEST_NUM="02"
+TEST_IN=.test/${TEST_NUM}.in
+TEST_EXP=.test/${TEST_NUM}.exp
+TEST_OUT=".test/${TEST_NUM}_test.out"
+TEST_DIFF=".test/${TEST_NUM}_test.diff"
+python ${EXP_SCRIPT} < ${TEST_IN}  > ${TEST_OUT}
+diff ${TEST_EXP} ${TEST_OUT} > ${TEST_DIFF}
+NB_DIFF=`cat ${TEST_DIFF} | wc -l`
+NB_TEST_TOTAL=$((NB_TEST_TOTAL+1))
+if [ ${NB_DIFF} -eq 0 ]
+then
+    echo "${TEST_NUM} ${Green}\xE2\x9C\x94${Color_Off} ${TEST_NAME}"
+    rm ${TEST_OUT}
+    rm ${TEST_DIFF}
+    NB_TEST_OK=$((NB_TEST_OK+1))
+else
+    echo ""
+    echo "${TEST_NUM} ${Red}\xE2\x9C\x97${Color_Off} ${TEST_NAME}"
+    if [ "${VERBOSE}" = "True" ]
+    then
+        echo "${Green}Expected${Color_Off}"
+        grep "<" ${TEST_DIFF}
+        echo "${Red}Given${Color_Off}"
+        grep ">" ${TEST_DIFF}
+    fi
+    echo ""
+fi
+
+
+##################################################
+# Print Summary
+##################################################
+if [ ${NB_TEST_OK} -eq ${NB_TEST_TOTAL} ]
+then
+    echo "Validated: ${NB_TEST_OK}/${NB_TEST_TOTAL}"
+else
+    echo "Validated: ${Red}${NB_TEST_OK}${Color_Off}/${NB_TEST_TOTAL}"
+fi

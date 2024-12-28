@@ -8,25 +8,29 @@
  - For instance, it musts ask `What's your name?`
  - Given the name (example `Bob`), the program should print `Hi, Bob!`
 
-Example:
+Examples:
 ```bash
 $ python hello.py
 What's your name? Bob
 Hi, Bob!
+$ python hello.py
+What's your name? Barbara
+Hi, Barbara!
 ```
 
 > [!TIP]
 > In Python, the function `input("a text")` prints `a text` on the standard output and waits for the user to type something on the keyboard.
-> For further information, [read the doc](https://docs.python.org/3/library/functions.html#input)!
+> For further information, [Read the Doc!](https://docs.python.org/3/library/functions.html#input)
 
 # When to Do it
 
- - During the first session
+During the first session
+
+# How to test
+
+- Test your script with command `./check [-v] hello.py`
+- `-v` option gives the difference between what is expected and what your script prints
 
 # How to submit
-- Once you're done, you can submit your answers by running the following commands:
-```bash
-git add hello.py
-git commit -m "My answer"
-git push
-```
+
+Once you're done, submit your file on Moodle
