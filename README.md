@@ -5,17 +5,17 @@
 # What to Do
 
  - Get this repository localy with `git clone`
- - Create a file `hello.py`
+ - Create a file `hibob.py`
  - The program prompts the user for their name and then says hello to that user.
  - For instance, it musts ask `What's your name?`
  - Given the name (example `Bob`), the program should print `Hi, Bob!`
 
 Examples:
 ```bash
-$ python hello.py
+$ python hibob.py
 What's your name? Bob
 Hi, Bob!
-$ python hello.py
+$ python hibob.py
 What's your name? Barbara
 Hi, Barbara!
 ```
@@ -30,7 +30,7 @@ During the first session
 
 # How to Test
 
-- Test your script with command `./check hello.py`
+- Test your script with command `./check hibob.py`
 
 # How to Submit
 

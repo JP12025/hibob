@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
 # File to test
-EXP_SCRIPT="hello.py"
+EXP_SCRIPT="hibob.py"
 
 # Text colors
 COLOR_REST="$(tput sgr0)"
