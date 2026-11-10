@@ -11,14 +11,8 @@
  - Given the name (example `Bob`), the program should print `Hi, Bob!`
 
 Examples:
-```bash
-$ python hibob.py
-What's your name? Bob
-Hi, Bob!
-$ python hibob.py
-What's your name? Barbara
-Hi, Barbara!
-```
+
+![Demo of hibob.py](hibob.gif)
 
 > [!TIP]
 > In Python, the function `input("a text")` prints `a text` on the standard output and waits for the user to type something on the keyboard.
